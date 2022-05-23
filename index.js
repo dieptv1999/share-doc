@@ -1,9 +1,26 @@
-/**
- * @format
- */
+import {Navigation} from 'react-native-navigation';
+import RegisterScreens from './app/components/RegisterScreens';
+import store from './app/redux/store';
+import {PREFIX_NAVIGATION} from './app/utils/constant';
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
+RegisterScreens(store);
 
-AppRegistry.registerComponent(appName, () => App);
+startApp();
+
+async function startApp() {
+  Navigation.events().registerAppLaunchedListener(() => {
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: PREFIX_NAVIGATION + 'Home',
+              },
+            },
+          ],
+        },
+      },
+    });
+  });
+}

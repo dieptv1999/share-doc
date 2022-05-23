@@ -1,14 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,6 +8,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+
+import SplashScreen from 'react-native-splash-screen';
 
 import {
   Colors,
@@ -55,12 +47,16 @@ const Section: React.FC<{
   );
 };
 
-const App = () => {
+const Home = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -112,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Home;
